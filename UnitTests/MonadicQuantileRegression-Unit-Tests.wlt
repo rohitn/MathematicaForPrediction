@@ -177,6 +177,7 @@ VerificationTest[(* 10 *)
   res =
       DoubleLongRightArrow[
         QRMonUnit[data],
+        QRMonQuantileRegression[12, {0.1,0.9}],
         QRMonOutliers,
         QRMonTakeValue
       ];
@@ -192,12 +193,13 @@ VerificationTest[(* 11 *)
   res =
       DoubleLongRightArrow[
         QRMonUnit[data],
-        QRMonOutliers["Knots" -> 6, "TopOutliersQuantile" -> 0.98],
+        QRMonQuantileRegression[6, 0.9],
+        QRMonOutliers[],
         QRMonTakeValue
       ];
   MatrixQ[#, NumberQ] & /@ KeyTake[res, {"topOutliers", "bottomOutliers"}]
   ,
-  <|"topOutliers" -> True, "bottomOutliers" -> True|>
+  <|"topOutliers" -> True|>
   ,
   TestID->"Outliers-2"
 ]
@@ -299,6 +301,59 @@ VerificationTest[(* 17 *)
   ,
   TestID->"Evaluate-3"
 ]
+
+
+VerificationTest[(* 18 *)
+  (* This should fail since more than one regression quantile is needed for the simulations. *)
+  res =
+      Block[{Echo}, Echo =.;
+      DoubleLongRightArrow[
+        QRMonUnit[data],
+        QRMonQuantileRegression[12, {0.5}],
+        QRMonSimulate[100],
+        QRMonTakeValue
+      ]
+      ];
+  MatchQ[res, $QRMonFailure ]
+  ,
+  True
+  ,
+  TestID->"Simulate-1"
+]
+
+
+VerificationTest[(* 19 *)
+  res =
+      DoubleLongRightArrow[
+        QRMonUnit[data],
+        QRMonQuantileRegression[12, Range[0.2, 0.8, 0.2]],
+        QRMonSimulate[100],
+        QRMonTakeValue
+      ];
+  MatchQ[res, { {_?NumberQ, _?NumberQ} ..} ]
+  ,
+  True
+  ,
+  TestID->"Simulate-2"
+]
+
+
+VerificationTest[(* 20 *)
+  tPoints = RandomReal[MinMax[data[[All,1]]],10];
+  res =
+      DoubleLongRightArrow[
+        QRMonUnit[data],
+        QRMonQuantileRegression[12, Range[0.2, 0.8, 0.2]],
+        QRMonSimulate[tPoints],
+        QRMonTakeValue
+      ];
+  MatchQ[res, { {_?NumberQ, _?NumberQ} ..} ] && res[[All,1]] == tPoints
+  ,
+  True
+  ,
+  TestID->"Simulate-3"
+]
+
 
 
 EndTestSection[]

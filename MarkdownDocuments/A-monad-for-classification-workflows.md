@@ -44,7 +44,7 @@ needed to utilize it.
 - The section "Example use cases" gives several more elaborated examples of `ClCon` that have "real life" flavor.   
 (But still didactic and concise enough.)
 
-- The section "Unit test" describes the tests used in the development of the `ClCon` monad.    
+- The section "Unit tests" describes the tests used in the development of the `ClCon` monad.    
 (The random pipelines unit tests are especially interesting.)
 
 - The section "Future plans" outlines future directions of development.    
@@ -581,7 +581,7 @@ Using the option "ClassLabels" we can focus on specific class labels:
 
 ### Setters and takers
 
-The values from the monad context can be set or obtained with the corresponding "setters" and "takers" functions as summarized in previous section.
+The values from the monad context can be set or obtained with the corresponding "setter" and "taker" functions as summarized in a previous section.
 
 For example:
 
@@ -755,7 +755,7 @@ Generate pipelines:
 
     (* 300 *)
 
-Here is sample of the generated pipelines:
+Here is a sample of the generated pipelines:
 
     Block[{DoubleLongRightArrow, pipelines = RandomSample[pipelines, 6]}, 
      Clear[DoubleLongRightArrow];

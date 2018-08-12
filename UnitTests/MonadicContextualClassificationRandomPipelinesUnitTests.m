@@ -31,15 +31,15 @@
     Mathematica is a registered trademark of Wolfram Research, Inc.
 *)
 
-(* :Title: MonadicContextualClassification-Random-Pipelines-Unit-Tests *)
-(* :Context: MonadicContextualClassification-Random-Pipelines-Unit-Tests` *)
+(* :Title: MonadicContextualClassificationRandomPipelinesUnitTests *)
+(* :Context: MonadicContextualClassificationRandomPipelinesUnitTests` *)
 (* :Author: Anton Antonov *)
 (* :Date: 2018-05-11 *)
 
 (* :Package Version: 1.0 *)
-(* :Mathematica Version: *)
+(* :Mathematica Version: 11.3 *)
 (* :Copyright: (c) 2018 Anton Antonov *)
-(* :Keywords: *)
+(* :Keywords: unit test, randomly generated, classification *)
 (* :Discussion:
 
     Generation and execution of ClCon random test pipelines.
